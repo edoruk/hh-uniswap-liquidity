@@ -12,7 +12,7 @@ async function main() {
   const deploymentTx = pool.deploymentTransaction()
   await provider.waitForTransaction(deploymentTx.hash, 3)
 
-  const contractAddress = await coinA.getAddress()
+  const contractAddress = await pool.getAddress()
 
   console.log("Add Liquidity contract is deployed to ", contractAddress)
 

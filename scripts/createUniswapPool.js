@@ -20,19 +20,16 @@ async function main() {
   const url = `https://api.polygonscan.com/api?module=contract&action=getabi&address=${UNISWAP_V3_FACTORY_ADDRESS}&apikey=${POLYGONSCAN_API_KEY}`
   const res = await axios.get(url)
   const abi = JSON.parse(res.data.result)
-
   const factoryContract = new ethers.Contract(
     UNISWAP_V3_FACTORY_ADDRESS,
     abi,
     MUMBAI_PROVIDER
   )
-
   const tx = await factoryContract
     .connect(connectedWallet)
     .createPool(COINA_ADDRESS, COINB_ADDRESS, 500)
   const receipt = await tx.wait()
   console.log("receipt:", receipt)
-
   const newPoolAddress = await factoryContract.getPool(
     COINA_ADDRESS,
     COINB_ADDRESS,

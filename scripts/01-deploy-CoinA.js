@@ -13,7 +13,6 @@ async function main() {
   await provider.waitForTransaction(deploymentTx.hash, 3)
 
   const coinAAddress = await coinA.getAddress()
-
   console.log("CoinA is deployed to ", coinAAddress)
 
   const args = []
